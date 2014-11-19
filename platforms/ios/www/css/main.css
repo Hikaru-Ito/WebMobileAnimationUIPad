@@ -1,0 +1,50 @@
+#main-header {
+  position: relative;
+  height: 46px;
+  line-height: 46px;
+  background: #3a3d42;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+  border-bottom: 2px #22313F solid; }
+  #main-header h1 {
+    font-size: 14px; }
+
+#col-left {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  width: 520px;
+  height: 100%;
+  float: left;
+  box-shadow: 2px 0 4px #444;
+  z-index: 10;
+  background: #fff;
+  overflow: hidden; }
+
+#col-right {
+  position: absolute;
+  background: #676b73;
+  height: 100%;
+  width: 520px;
+  top: 46px;
+  right: 0;
+  z-index: 8; }
+  #col-right #iphone-area {
+    position: absolute;
+    top: 10px;
+    left: 60px;
+    width: 400px;
+    height: 750px;
+    background-image: url(../img/iphone_6_2.png);
+    background-repeat: no-repeat;
+    background-size: 400px 750px; }
+    #col-right #iphone-area .content {
+      position: absolute;
+      top: 80px;
+      right: 50px;
+      width: 300px;
+      height: 533px;
+      background: skyblue;
+      overflow: hidden; }

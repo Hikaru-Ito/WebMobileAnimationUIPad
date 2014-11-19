@@ -1,0 +1,78 @@
+/* This is a Base CSS file */
+html, body {
+    position:relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: "HelveticaNeue-Light","HiraKakuProN-W3","ヒラギノ角ゴ Pro W3","HiraKakuPro-W3";
+}
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+ul {
+	list-style:none;
+	padding:0;
+}
+li {
+	padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+input {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+a {
+    display: block;
+}
+
+a {
+    -webkit-tap-highlight-color:transparent;
+}
+a:link { color: #333; }
+a:visited { color: #222; }
+a:hover { color: #90cd00; }
+a:active { color: #90cd00; }
+/*すべての要素に適用する内容*/
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+    box-sizing: border-box;
+}
+*:not(input){
+    -webkit-user-select: none;
+}
+textarea {
+    -webkit-user-select: auto;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout:none;
+}
+.clear {
+    clear: both;
+    content:"";
+}
+.disnon {
+    display:none;
+}
+input,textarea:focus {
+    border:solid 1px #EEA34A;
+}
