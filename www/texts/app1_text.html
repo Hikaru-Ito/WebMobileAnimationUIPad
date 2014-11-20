@@ -1,8 +1,8 @@
 <div class="a1-texts">
 
 	<div class="tabs">
-		<div class="tab left selected">解説</div>
-		<div class="tab right">ソースコード</div>
+		<div class="tab left selected" data-src="left">解説</div>
+		<div class="tab right" data-src="right">ソースコード</div>
 	</div>
 
 	<div class="content">
@@ -11,12 +11,500 @@
 			<h1>Drag and Drop Action AnimationUI</h1>
 			<h2>ショッピングアプリをテーマにした、ドラッグ＆ドロップで直感的にアクションを実行できるクロスプラットフォームなモバイルアニメーションUIの実現</h2>
 
-			<h3>操作方法<span>- How to use -</span></h3>
-			<p></p>
+			<h3>操作方法</h3>
+			<p>アイテムを<b>長押しタップ</b>すると、アイコンが浮き出てくるのでそのまま指を動かして目的のアクションのアイコンへドラッグ&ドロップします</p>
+			<p>最後にNotficationが表示されます</p>
+
+			<h3>ねらい</h3>
+			<p>スマートフォンの小さい限られた画面サイズの中に、コンテンツをできるだけ多く表示したい場合、最近では例のような2カラムのレイアウトが用いられることがよくあります。</p>
+			<p>しかし、今回のように画像に重点を置くコンテンツの場合、その一つ一つのコンテンツに対して付随してくるアクション（LikeやShareやBuyなど）のボタン等をそれぞれに表示しておくと、ボタンが小さくなったり見ずらくなったりして操作性が悪くなります。</p>
+			<p>その際に、コンテンツに対して、違った形でアクションを実行できる仕組みが有効です。</p>
+			<p>今回は、長押しタップをトリガーとして、ドラッグ＆ドロップによるアクション実行という直感的でかつ、気持ちの良いインターフェイスを実現しました。</p>
+			<p>アニメーションをうまく起用することによって、操作性という分野を超えた、<b>"美しい"、"かっこいい"、"クセになる"</b>といった新しい要素を取り入れ、ユーザービリティ向上への仕掛け作りをしました。</p>
+
+			<h3>技術的観点</h3>
+			<p>このインターフェイスの実装はとても単純です。</p>
+			<p>JavaScriptからタッチイベントと座標を取得し、CSSでpositionを変えることでドラッグ&ドロップが実現できています。</p>
+			<p>このインターフェイスはHTML,CSS,JSのみで実現されているため、<b>ワンソースでiOSやAndroidといったさまざまなOSに対応できます。</b>また、実際にiOSやAndroidのネイティブコードで実現しようとするととても複雑になります。</p>
+			<p>HTML/CSSには、描画自由度が高いという強みがあり、画一的な見た目から脱し、より独創的なアイデアの実現に能力を発揮します。</p>
+			<p>また、CSS3によってより簡単な記述で複雑な実装が可能になり、アニメーションにおける端末のGPUのコントロールも容易になりました。工夫とノウハウ次第で、ネイティブ開発に負けない手軽さと、高い完成度を実現できます。</p>
+
+
 
 		</div>
 		<div class="b disnon">
-			ソースコード
+			<div class="file_type_tabs">
+				<div class="types_tab html selected" data-src="html">HTML5</div>
+				<div class="types_tab css" data-src="css">CSS3</div>
+				<div class="types_tab js" data-src="js">JavaScript</div>
+			</div>
+			<div class="code html">
+<pre class="prettyprint linenums">
+&lt;div class=\&quot;a1-app\&quot;&gt;
+    &lt;div id=\&quot;a1-pointball\&quot; class=\&quot;magictime puffIn\&quot;&gt;&lt;/div&gt;
+    &lt;div id=\&quot;a1-modalbg\&quot; data-after=0&gt;
+        &lt;div class=\&quot;a1-messages\&quot;&gt;
+            &lt;div class=\&quot;a1-message drop\&quot;&gt;
+                &lt;h3 class=\&quot;perspectiveUpRetourn\&quot;&gt;Drag to Icon&lt;/h3&gt;
+                &lt;div class=\&quot;text perspectiveUpRetourn\&quot;&gt;目的のアクションに商品を&lt;br&gt;ドラッグ＆ドロップしてください&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-message share disnon\&quot;&gt;
+                &lt;h3 class=\&quot;magictime perspectiveUpRetourn\&quot;&gt;Share&lt;/h3&gt;
+                &lt;div class=\&quot;text magictime perspectiveUpRetourn\&quot;&gt;この商品をTwitterでシェアします&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-message cart disnon\&quot;&gt;
+                &lt;h3 class=\&quot;magictime perspectiveUpRetourn\&quot;&gt;Add Cart&lt;/h3&gt;
+                &lt;div class=\&quot;text magictime perspectiveUpRetourn\&quot;&gt;この商品をカートに追加します&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-message wish disnon\&quot;&gt;
+                &lt;h3 class=\&quot;magictime perspectiveUpRetourn\&quot;&gt;WishList&lt;/h3&gt;
+                &lt;div class=\&quot;text magictime perspectiveUpRetourn\&quot;&gt;この商品をウィッシュリストに追加します&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=\&quot;a1-zone slideLeftRetourn left\&quot;&gt;&lt;i class=\&quot;icon icon-share\&quot;&gt;&lt;/i&gt;&lt;div class=\&quot;title\&quot;&gt;Share&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=\&quot;a1-zone slideRightRetourn right\&quot;&gt;&lt;i class=\&quot;icon icon-heart\&quot;&gt;&lt;/i&gt;&lt;div class=\&quot;title\&quot;&gt;Wish&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=\&quot;a1-zone slideDownRetourn bottom\&quot;&gt;&lt;i class=\&quot;icon icon-cart\&quot;&gt;&lt;/i&gt;&lt;div class=\&quot;title\&quot;&gt;Cart&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=\&quot;a1-notification share magictime tinDownIn disnon\&quot;&gt;
+        &lt;i class=\&quot;icon icon-share\&quot;&gt;&lt;/i&gt;
+        &lt;div class=\&quot;text\&quot;&gt;商品をTwitterにシェアしました&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=\&quot;a1-notification wish magictime tinDownIn disnon\&quot;&gt;
+        &lt;i class=\&quot;icon icon-heart\&quot;&gt;&lt;/i&gt;
+        &lt;div class=\&quot;text\&quot;&gt;商品をWishListに追加しました&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=\&quot;a1-notification cart magictime tinDownIn disnon\&quot;&gt;
+        &lt;i class=\&quot;icon icon-cart\&quot;&gt;&lt;/i&gt;
+        &lt;div class=\&quot;text\&quot;&gt;商品をカートに追加しました&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=\&quot;a1-header\&quot;&gt;
+        &lt;h1&gt;Shopping Items&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class=\&quot;a1-statusbar magictime slideLeftRetourn disnon\&quot;&gt;&lt;/div&gt;
+    &lt;div class=\&quot;a1-content\&quot;&gt;
+        &lt;div class=\&quot;a1-items\&quot;&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product1.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product1.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$1000&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product2.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product2.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$2200&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product3.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product3.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$400&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product4.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product4.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$5500&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product5.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product5.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$100&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product6.png\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product6.png); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$120&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product7.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product7.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$240&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product8.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product8.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$800&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product9.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product9.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$700&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product10.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product10.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$3300&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product11.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product11.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$700&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★★&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=\&quot;a1-item tap\&quot; data-image=\&quot;img/app1/product12.jpg\&quot;&gt;
+                &lt;div class=\&quot;a1-image\&quot; style=\&quot;background:url(img/app1/product12.jpg); background-repeat:no-repeat; background-position:center center; background-size:cover;\&quot;&gt;&lt;/div&gt;
+                &lt;div class=\&quot;a1-price\&quot;&gt;$600&lt;/div&gt;
+                &lt;div class=\&quot;a1-star\&quot;&gt;★★★★★&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+			</div>
+			<div class="code css disnon">
+<pre class="prettyprint linenums lang-css">
+/* -webkit-animation-delay */
+.a1-app #a1-modalbg .a1-zone.magictime { -webkit-animation-delay:0.1s }
+
+/* -webkit-animation-duration */
+.a1-app #a1-modalbg .a1-messages .a1-message .magictime { -webkit-animation-duration:0.2s }
+.a1-app #a1-modalbg .a1-zone.magictime { -webkit-animation-duration:0.3s }
+.a1-app #a1-pointball.magictime { -webkit-animation-duration:0.3s }
+.a1-notification.magictime { -webkit-animation-duration:0.3s }
+.a1-statusbar.magictime { -webkit-animation-duration:2s }
+
+/* -webkit-background-size */
+.a1-app #a1-pointball { -webkit-background-size:cover }
+
+/* -webkit-filter */
+.a1-app .a1-blur { -webkit-filter:blur(4px) }
+
+/* -webkit-overflow-scrolling */
+.a1-header { -webkit-overflow-scrolling:touch }
+
+/* -webkit-text-stroke */
+.a1-app #a1-modalbg .a1-zone i { -webkit-text-stroke:1px #333 }
+.a1-app #a1-modalbg .a1-zone.bottom i { -webkit-text-stroke:1px #F22613 }
+.a1-app #a1-modalbg .a1-zone.left i { -webkit-text-stroke:1px #22A7F0 }
+.a1-app #a1-modalbg .a1-zone.right i { -webkit-text-stroke:1px #DB0A5B }
+.a1-app #a1-modalbg .a1-zone.selected i { -webkit-text-stroke:0px #333 !important }
+.a1-app #a1-modalbg .a1-zone.top i { -webkit-text-stroke:1px #333 }
+
+/* -webkit-transform */
+.a1-app #a1-modalbg .a1-zone { -webkit-transform:translate3d(0, 0, 0) }
+.a1-app #a1-modalbg .a1-zone.selected { -webkit-transform:scale(1.3) }
+.a1-app #a1-pointball { -webkit-transform:translateZ(0, 0, 0) }
+.a1-header { -webkit-transform:translate3d(0, 0, 0) }
+.a1-statusbar { -webkit-transform:translate3d(0, 0, 0) }
+
+/* -webkit-transition */
+.a1-app #a1-modalbg .a1-zone { -webkit-transition:all 0.3s }
+.a1-statusbar { -webkit-transition:all 3s }
+
+/* -webkit-transition-timing-function */
+.a1-app #a1-modalbg .a1-zone { -webkit-transition-timing-function:ease-in-out }
+.a1-statusbar { -webkit-transition-timing-function:ease-in-out }
+
+/* animation-delay */
+.a1-app #a1-modalbg .a1-zone.magictime { animation-delay:0.1s }
+
+/* animation-duration */
+.a1-app #a1-modalbg .a1-messages .a1-message .magictime { animation-duration:0.2s }
+.a1-app #a1-modalbg .a1-zone.magictime { animation-duration:0.3s }
+.a1-app #a1-modalbg .a1-zone.selected { animation-duration:0 }
+.a1-app #a1-pointball.magictime { animation-duration:0.3s }
+.a1-notification.magictime { animation-duration:0.3s }
+.a1-statusbar.magictime { animation-duration:2s }
+
+/* background */
+.a1-app #a1-modalbg { background:rgba(255, 255, 255, 0.8) }
+.a1-app #a1-modalbg .a1-zone.bottom.selected { background:#F22613 }
+.a1-app #a1-modalbg .a1-zone.left.selected { background:#22A7F0 }
+.a1-app #a1-modalbg .a1-zone.right.selected { background:#DB0A5B }
+.a1-app #a1-modalbg .a1-zone.top.selected { background:#3498DB }
+.a1-app #a1-pointball { background:rgba(230, 126, 34, 0.8) }
+.a1-app { background:#f0f1f5 }
+.a1-header { background:#2C3E50 }
+.a1-notification { background:#8E44AD }
+.a1-notification.cart { background:#F22613 }
+.a1-notification.share { background:#22A7F0 }
+.a1-notification.wish { background:#DB0A5B }
+.a1-statusbar { background:#22A7F0 }
+
+/* border */
+.a1-app #a1-modalbg .a1-zone { border:1px solid #aaa }
+.a1-app #a1-modalbg .a1-zone.bottom { border:1px solid #F22613 }
+.a1-app #a1-modalbg .a1-zone.left { border:1px solid #22A7F0 }
+.a1-app #a1-modalbg .a1-zone.right { border:1px solid #DB0A5B }
+.a1-app #a1-modalbg .a1-zone.top { border:1px solid #3498DB }
+.a1-app #a1-pointball { border:3px solid #fff }
+
+/* border-bottom */
+.a1-notification.cart { border-bottom:2px solid #96281B }
+.a1-notification.share { border-bottom:2px solid #4183D7 }
+.a1-notification.wish { border-bottom:2px solid #C0392B }
+
+/* border-radius */
+.a1-app #a1-modalbg .a1-zone { border-radius:50% }
+.a1-app #a1-pointball { border-radius:50% }
+.a1-notification { border-radius:4px }
+
+/* bottom */
+.a1-app #a1-modalbg .a1-zone.bottom { bottom:30px }
+.a1-notification { bottom:20px }
+
+/* box-shadow */
+.a1-app #a1-pointball { box-shadow:0 0 2px #000 }
+
+/* color */
+.a1-app #a1-modalbg .a1-messages .a1-message { color:#333 }
+.a1-app #a1-modalbg .a1-zone .title { color:#555 }
+.a1-app #a1-modalbg .a1-zone i { color:transparent }
+.a1-app #a1-modalbg .a1-zone.selected i { color:#fff }
+.a1-header { color:#fff }
+.a1-notification .icon { color:#fff }
+.a1-notification .text { color:#fff }
+
+/* content */
+.a1-app #a1-modalbg { content:'' }
+.a1-app #a1-modalbg .a1-zone { content:'' }
+.a1-app #a1-pointball { content:'' }
+.a1-statusbar { content:'' }
+
+/* display */
+.a1-app #a1-modalbg { display:none }
+.a1-app #a1-pointball { display:none }
+.a1-notification .icon { display:block }
+
+/* filter */
+.a1-app .a1-blur { filter:blur(4px) }
+
+/* font-size */
+.a1-app #a1-modalbg .a1-messages .a1-message .text { font-size:12px }
+.a1-app #a1-modalbg .a1-messages .a1-message h3 { font-size:26px }
+.a1-app #a1-modalbg .a1-zone .title { font-size:10px }
+.a1-app #a1-modalbg .a1-zone i { font-size:20px }
+.a1-header h1 { font-size:14px }
+.a1-notification .icon { font-size:28px }
+.a1-notification .text { font-size:12px }
+
+/* font-weight */
+.a1-app #a1-modalbg .a1-messages .a1-message { font-weight:bold }
+.a1-app #a1-modalbg .a1-zone .title { font-weight:bold }
+.a1-notification .text { font-weight:bold }
+
+/* height */
+.a1-app #a1-modalbg { height:100% }
+.a1-app #a1-modalbg .a1-zone { height:50px }
+.a1-app #a1-modalbg .a1-zone .title { height:20px }
+.a1-app #a1-modalbg .a1-zone i { height:50px }
+.a1-app #a1-pointball { height:100px }
+.a1-app { height:100% }
+.a1-header { height:44px }
+.a1-notification { height:50px }
+.a1-notification .icon { height:50px }
+.a1-notification .text { height:50px }
+.a1-statusbar { height:5px }
+
+/* left */
+.a1-app #a1-modalbg .a1-zone .title { left:0 }
+.a1-app #a1-modalbg .a1-zone.bottom { left:125px }
+.a1-app #a1-modalbg .a1-zone.left { left:8px }
+.a1-app #a1-modalbg .a1-zone.top { left:125px }
+.a1-notification .icon { left:10px }
+
+/* line-height */
+.a1-app #a1-modalbg .a1-zone .title { line-height:20px }
+.a1-app #a1-modalbg .a1-zone i { line-height:50px }
+.a1-header { line-height:44px }
+.a1-notification .icon { line-height:50px }
+
+/* margin-bottom */
+.a1-app #a1-modalbg .a1-messages .a1-message h3 { margin-bottom:10px }
+
+/* overflow */
+.a1-app { overflow:hidden }
+.a1-header { overflow:auto }
+
+/* padding-top */
+.a1-notification .text { padding-top:15px }
+
+/* position */
+.a1-app #a1-modalbg { position:absolute }
+.a1-app #a1-modalbg .a1-messages { position:absolute }
+.a1-app #a1-modalbg .a1-zone { position:absolute }
+.a1-app #a1-modalbg .a1-zone .title { position:absolute }
+.a1-app #a1-modalbg .a1-zone i { position:absolute }
+.a1-app #a1-pointball { position:absolute }
+.a1-app { position:relative }
+.a1-header { position:relative }
+.a1-notification { position:absolute }
+.a1-notification .icon { position:absolute }
+.a1-notification .text { position:absolute }
+.a1-statusbar { position:absolute }
+
+/* right */
+.a1-app #a1-modalbg .a1-messages { right:20px }
+.a1-app #a1-modalbg .a1-zone i { right:0 }
+.a1-app #a1-modalbg .a1-zone.right { right:8px }
+.a1-notification { right:20px }
+.a1-notification .text { right:10px }
+.a1-statusbar { right:0 }
+
+/* text-align */
+.a1-app #a1-modalbg .a1-messages .a1-message { text-align:center }
+.a1-app #a1-modalbg .a1-zone .title { text-align:center }
+.a1-app #a1-modalbg .a1-zone i { text-align:center }
+.a1-header { text-align:center }
+.a1-notification .icon { text-align:center }
+
+/* top */
+.a1-app #a1-modalbg .a1-messages { top:60px }
+.a1-app #a1-modalbg .a1-zone .title { top:50px }
+.a1-app #a1-modalbg .a1-zone i { top:0 }
+.a1-app #a1-modalbg .a1-zone.left { top:240px }
+.a1-app #a1-modalbg .a1-zone.right { top:240px }
+.a1-app #a1-modalbg .a1-zone.top { top:8px }
+.a1-notification .icon { top:0 }
+.a1-notification .text { top:0px }
+.a1-statusbar { top:44px }
+
+/* width */
+.a1-app #a1-modalbg { width:100% }
+.a1-app #a1-modalbg .a1-messages { width:260px }
+.a1-app #a1-modalbg .a1-zone { width:50px }
+.a1-app #a1-modalbg .a1-zone .title { width:50px }
+.a1-app #a1-modalbg .a1-zone i { width:50px }
+.a1-app #a1-pointball { width:100px }
+.a1-app { width:100% }
+.a1-header { width:100% }
+.a1-notification { width:260px }
+.a1-notification .icon { width:50px }
+.a1-notification .text { width:180px }
+.a1-statusbar { width:100% }
+
+/* z-index */
+.a1-app #a1-modalbg { z-index:25 }
+.a1-app #a1-pointball { z-index:28 }
+.a1-notification { z-index:9 }
+.a1-statusbar { z-index:19 }
+
+</pre>
+
+			</div>
+			<div class="code js disnon">
+<pre class="prettyprint linenums">
+$(function() {
+   $('body').hammer().on('hold', '.a1-item',function(e) {
+        e.gesture.stopDetect();
+        var y = e.gesture.center.pageY;
+        var x = e.gesture.center.pageX;
+
+        // 埋め込みViewのため、画面の差分を計算する
+        y = y-136; // 46+10+80
+        x = x-630; // 520+60+50
+        //console.log(x);
+        //console.log(y);
+
+        var centerY = y-50;
+        var centerX = x-50;
+
+        $('.a1-header').addClass('a1-blur');
+        $('.a1-content').addClass('a1-blur');
+
+        var image = $(this).attr('data-image');
+        $('#a1-modalbg').attr('data-after',0);
+        $('#a1-pointball').css({'background-image':'url(' + image + ')', 'background-repeat':'no-repeat', 'background-position':'center center'}).css({'left':centerX, 'top':centerY}).show();
+
+        $('#a1-modalbg').show();
+
+        $(this).on('touchmove', function(e) {
+            e.preventDefault();
+            var position_ab_X = event.changedTouches[0].pageX;
+            var position_ab_Y = event.changedTouches[0].pageY;
+            position_ab_X = position_ab_X-630;
+            position_ab_Y = position_ab_Y-136;
+
+            positionX = position_ab_X - centerX;
+            positionY = position_ab_Y - centerY;
+            $('#a1-pointball').css({'left':centerX + positionX - 50, 'top':centerY + positionY - 50});
+
+            if((position_ab_Y+50 > 240) && (position_ab_Y-50 < 290) && (position_ab_X-50 < 60)) { // 左 : x座標が６０未満、y座標が240から２９０まで
+                $('.a1-zone.left').addClass('selected');
+                $('.a1-message.drop').addClass('disnon');
+                $('.a1-message.share').removeClass('disnon');
+                $('#a1-modalbg').attr('data-after',1);
+
+            } else if((position_ab_Y+50 > 240) && (position_ab_Y-50 < 290) && (position_ab_X+50 > 240)) { // Right : x ->
+                $('.a1-zone.right').addClass('selected');
+                $('.a1-message.drop').addClass('disnon');
+                $('.a1-message.wish').removeClass('disnon');
+                $('#a1-modalbg').attr('data-after',2);
+
+            } else if((position_ab_Y+50 > 453) && (position_ab_X+50 > 125) && (position_ab_X-50 < 175)) {
+                $('.a1-zone.bottom').addClass('selected');
+                $('.a1-message.drop').addClass('disnon');
+                $('.a1-message.cart').removeClass('disnon');
+                $('#a1-modalbg').attr('data-after',3);
+
+            } else {
+                $('.a1-zone').removeClass('selected');
+                $('.a1-message').addClass('disnon');
+                $('.a1-message.drop').removeClass('disnon');
+                $('#a1-modalbg').attr('data-after',0);
+            }
+
+        });
+
+
+        $(this).bind('touchend touchcancel', function() {
+            $(this).off('touchmove touchend');
+
+            $('.a1-zone').removeClass('selected');
+
+            $('#a1-modalbg').hide();
+            $('#a1-pointball').hide();
+
+            $('.a1-message').addClass('disnon');
+            $('.a1-message.drop').removeClass('disnon');
+
+            $('.a1-header').removeClass('a1-blur');
+            $('.a1-content').removeClass('a1-blur');
+
+
+            var data_after = $('#a1-modalbg').attr('data-after');
+
+            if(data_after == 1) {
+                $('.a1-statusbar').removeClass('disnon');
+                $('.a1-statusbar').css('background','#22A7F0');
+                setTimeout(function() {
+                    $('.a1-statusbar').addClass('disnon');
+                    $('.a1-notification.share').removeClass('disnon');
+                }, 2200);
+                setTimeout(function() {
+                    $('.a1-notification').addClass('disnon');
+                }, 4000);
+
+            } else if(data_after == 2) {
+                $('.a1-statusbar').removeClass('disnon');
+                $('.a1-statusbar').css('background','#DB0A5B');
+                setTimeout(function() {
+                    $('.a1-statusbar').addClass('disnon');
+                    $('.a1-notification.wish').removeClass('disnon');
+                }, 2200);
+                setTimeout(function() {
+                    $('.a1-notification').addClass('disnon');
+                }, 4000);
+
+
+            } else if(data_after == 3) {
+                $('.a1-statusbar').removeClass('disnon');
+                $('.a1-statusbar').css('background','#F22613');
+                setTimeout(function() {
+                    $('.a1-statusbar').addClass('disnon');
+                    $('.a1-notification.cart').removeClass('disnon');
+                }, 2200);
+                setTimeout(function() {
+                    $('.a1-notification').addClass('disnon');
+                }, 4000);
+            }
+
+        });
+
+
+    });
+});
+</pre>
+			</div>
+
 		</div>
 
 

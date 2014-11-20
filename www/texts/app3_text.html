@@ -1,0 +1,410 @@
+<div class="a3-texts">
+
+	<div class="tabs">
+		<div class="tab left selected" data-src="left">解説</div>
+		<div class="tab right" data-src="right">ソースコード</div>
+	</div>
+
+	<div class="content">
+
+		<div class="a">
+			<h1>SlideFinger Photo<br>Decoration UI</h1>
+			<h2>指をスライドすることでスタンプを選ぶことで写真をデコることができるインターフェイスです。これもWebでうまく実装できます。ちょっとクセになる新しいユーザーインターフェイスです。また、JSから端末のCameraAPIを呼び出すことで、この端末で撮った写真もデコることができます。</h2>
+
+			<h3>操作方法</h3>
+			<p>写真の好きなところで<b>長押しタップ</b>すると、スタンプメニューが表示されます。</p>
+			<p>表示されたらそのまま指を離さず、好きなスタンプの上に指をスライドさせます。</p>
+            <p>スタンプアイコンの上で指を離すと、スタンプを写真にデコることができます。また、スタンプは押したあとでも動かすことができます。</p>
+            <p>右上のバツボタンで、スタンプを一掃します。左上のカメラボタンで、写真を撮ることができます。</p>
+
+			<h3>ねらい</h3>
+			<p>デコレーションアプリは世界中のスマホユーザーが使いますが、仕組みはとても単純です。Web技術を使っても簡単に実装できます。</p>
+			<p>今回実装した、長押しタップからのスライドアクション選択は、画面のどこに指があっても実行できるのが素晴らしい点です。</p>
+			<p>最近はiPhoneの画面が大きくなるなど、スマートフォンは画面インチ数が大きいものが主流になってきています。<b>画面が大きいと片手で操作しにくく、指の可動範囲は狭く</b>なります。そこで、今回のような<b>どこに指があってもアクションを起こすことができるUI</b>はとてもユーザービリティ向上において重要になってきます。</p>
+
+
+			<h3>技術的観点</h3>
+			<p>jQueryのtoucheventを利用しています。イベントが取りやすく、最近の端末ではかなりスムースに動作します。</p>
+			<p>ソースコードもとても簡潔になっていて仕組みがすぐに理解できるはずです。</p>
+            <p>CameraAPIだけでなく、フレームワークの「Cordova」を利用することで、JavaScriptとネイティブAPIのブリッジが実現できるため、端末の機能をフルに活用することができます。</p>
+			<p>このインターフェイスはHTML,CSS,JSのみで実現されているため、<b>ワンソースでiOSやAndroidといったさまざまなOSに対応できます。</b>また、実際にiOSやAndroidのネイティブコードで実現しようとするととても複雑になります。</p>
+			<p>HTML/CSSには、描画自由度が高いという強みがあり、画一的な見た目から脱し、より独創的なアイデアの実現に能力を発揮します。</p>
+			<p>また、CSS3によってより簡単な記述で複雑な実装が可能になり、アニメーションにおける端末のGPUのコントロールも容易になりました。工夫とノウハウ次第で、ネイティブ開発に負けない手軽さと、高い完成度を実現できます。</p>
+
+
+
+		</div>
+		<div class="b disnon">
+			<div class="file_type_tabs">
+				<div class="types_tab html selected" data-src="html">HTML5</div>
+				<div class="types_tab css" data-src="css">CSS3</div>
+				<div class="types_tab js" data-src="js">JavaScript</div>
+			</div>
+			<div class="code html">
+<pre class="prettyprint linenums">
+&lt;div class=\&quot;a3-app\&quot;&gt;
+    &lt;div class=\&quot;a3-header\&quot;&gt;
+        &lt;div class=\&quot;take_camera\&quot;&gt;&lt;i class=\&quot;icon icon-camera\&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+        &lt;h1&gt;SlideFinger Deco&lt;/h1&gt;
+        &lt;div class=\&quot;reset_button\&quot;&gt;&lt;i class=\&quot;icon icon-close\&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=\&quot;a3-maincontent\&quot;&gt;
+        &lt;div class=\&quot;a3-photo\&quot;&gt;&lt;/div&gt;
+        &lt;div id=\&quot;a3-holdstamp\&quot;&gt;
+            &lt;div class=\&quot;menu menu1\&quot;&gt;&lt;i class=\&quot;icon icon-heart\&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;div class=\&quot;menu menu2\&quot;&gt;&lt;i class=\&quot;icon icon-star3\&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;div class=\&quot;menu menu3\&quot;&gt;&lt;i class=\&quot;icon icon-thumbs-up\&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;div class=\&quot;menu menu4\&quot;&gt;&lt;i class=\&quot;icon icon-happy2\&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+			</div>
+			<div class="code css disnon">
+<pre class="prettyprint linenums lang-css">
+.a3-header {
+ background                         : #D2527F;
+ border-bottom                      : 2px solid #DB0A5B;
+ color                              : #fff;
+ height                             : 44px;
+ line-height                        : 44px;
+ position                           : relative;
+ text-align                         : center;
+ width                              : 100%;
+}
+.a3-header .reset_button {
+ color                              : #fff;
+ font-size                          : 20px;
+ height                             : 44px;
+ line-height                        : 44px;
+ position                           : absolute;
+ right                              : 10px;
+ text-align                         : center;
+ top                                : 0;
+ width                              : 44px;
+}
+.a3-header .take_camera {
+ color                              : #fff;
+ font-size                          : 24px;
+ height                             : 44px;
+ left                               : 10px;
+ line-height                        : 44px;
+ position                           : absolute;
+ text-align                         : center;
+ top                                : 0;
+ width                              : 44px;
+}
+.a3-header h1 {
+ font-size                          : 14px;
+}
+.a3-maincontent #a3-holdstamp {
+ content                            : '';
+ display                            : none;
+ height                             : 210px;
+ position                           : absolute;
+ width                              : 210px;
+ z-index                            : 50;
+}
+.a3-maincontent #a3-holdstamp .hover {
+ -webkit-transform                  : scale(1.2);
+}
+.a3-maincontent #a3-holdstamp .menu {
+ box-shadow                         : 0 0 2px #333;
+}
+.a3-maincontent #a3-holdstamp .menu i {
+ color                              : #fff;
+ font-size                          : 28px;
+ height                             : 50px;
+ line-height                        : 50px;
+ position                           : absolute;
+ text-align                         : center;
+ width                              : 50px;
+}
+.a3-maincontent #a3-holdstamp .menu1 {
+ -webkit-transform                  : translate3d(0, 0, 0);
+ -webkit-transition                 : all 0.2s;
+ -webkit-transition-timing-function : ease-out;
+ background-color                   : #DB0A5B;
+ border-radius                      : 6px;
+ height                             : 100px;
+ left                               : 80px;
+ position                           : absolute;
+ top                                : 0;
+ width                              : 50px;
+}
+.a3-maincontent #a3-holdstamp .menu1 i,
+.a3-maincontent #a3-holdstamp .menu4 i {
+ left                               : 0;
+ top                                : 0;
+}
+.a3-maincontent #a3-holdstamp .menu2 {
+ -webkit-transform                  : translate3d(0, 0, 0);
+ -webkit-transition                 : all 0.2s;
+ -webkit-transition-timing-function : ease-out;
+ background-color                   : #F9BF3B;
+ border-radius                      : 6px;
+ height                             : 50px;
+ position                           : absolute;
+ right                              : 0;
+ top                                : 80px;
+ width                              : 100px;
+}
+.a3-maincontent #a3-holdstamp .menu2 i {
+ right                              : 0;
+ top                                : 0;
+}
+.a3-maincontent #a3-holdstamp .menu3 {
+ -webkit-transform                  : translate3d(0, 0, 0);
+ -webkit-transition                 : all 0.2s;
+ -webkit-transition-timing-function : ease-out;
+ background-color                   : #3A539B;
+ border-radius                      : 6px;
+ bottom                             : 0;
+ height                             : 100px;
+ left                               : 80px;
+ position                           : absolute;
+ width                              : 50px;
+}
+.a3-maincontent #a3-holdstamp .menu3 i {
+ bottom                             : 0;
+ left                               : 0;
+}
+.a3-maincontent #a3-holdstamp .menu4 {
+ -webkit-transform                  : translate3d(0, 0, 0);
+ -webkit-transition                 : all 0.2s;
+ -webkit-transition-timing-function : ease-out;
+ background-color                   : #03A678;
+ border-radius                      : 6px;
+ height                             : 50px;
+ left                               : 0;
+ position                           : absolute;
+ top                                : 80px;
+ width                              : 100px;
+}
+.a3-maincontent {
+ background                         : #333;
+ height                             : 489px;
+ position                           : relative;
+ width                              : 100%;
+}
+.a3-maincontent .a3-photo {
+ background                         : url(../img/app3/photo.jpeg);
+ background-position                : center center;
+ background-repeat                  : no-repeat;
+ background-size                    : cover;
+ content                            : '';
+ height                             : 0;
+ height                             : 100%;
+ overflow                           : hidden;
+ position                           : absolute;
+ top                                : 0;
+ width                              : 100%;
+}
+.a3-maincontent .a3-photo .stamp {
+ content                            : '';
+ height                             : 40px;
+ left                               : 0;
+ position                           : absolute;
+ text-shadow                        : 0 0 2px #444;
+ top                                : 0;
+ width                              : 40px;
+}
+.a3-maincontent .a3-photo .stamp i {
+ color                              : #fff;
+ font-size                          : 40px;
+ height                             : 40px;
+ line-height                        : 40px;
+ position                           : absolute;
+ text-align                         : center;
+ width                              : 40px;
+}
+.a3-maincontent .a3-photo .stamp.magictime {
+ -webkit-animation-duration         : 0.3s;
+ animation-duration                 : 0.3s;
+}
+.a3-maincontent .a3-photo .stamp.stamp1 i {
+ color                              : #DB0A5B;
+}
+.a3-maincontent .a3-photo .stamp.stamp2 i {
+ color                              : #F9BF3B;
+}
+.a3-maincontent .a3-photo .stamp.stamp3 i {
+ color                              : #3A539B;
+}
+.a3-maincontent .a3-photo .stamp.stamp4 i {
+ color                              : #03A678;
+}
+</pre>
+
+			</div>
+			<div class="code js disnon">
+<pre class="prettyprint linenums">
+$(function ()
+{
+    $('body').hammer().on('hold', '.a3-photo', function (e)
+    {
+        //ホールド位置の座標を取得
+        var y = e.gesture.center.pageY;
+        var x = e.gesture.center.pageX;
+        y = y - 170;
+        x = x - 620;
+        //中央の座標を計算
+        var center_y = y - 105;
+        var center_x = x - 105;
+        //メニューを表示
+        $('#a3-holdstamp').css({
+            'top' : center_y, 'left' : center_x
+        }).show();
+        //メニューのフォーカス範囲を計算
+        //Menu1(上部分)
+        var one_left = x - 25;
+        var one_right = x + 25;
+        var one_top = y - 100;
+        var one_bottom = y - 40;
+        //Menu2(右部分)
+        var two_left = x + 40;
+        var two_right = x + 100;
+        var two_top = y - 25;
+        var two_bottom = y + 25;
+        //Menu3(下部分)
+        var three_left = x - 25;
+        　 var three_right = x + 25;
+        var three_top = y + 40;
+        var three_bottom = y + 100;
+        //Menu4(左部分)
+        var four_left = x - 100;
+        var four_right = x - 40;
+        var four_top = y - 25;
+        var four_bottom = y + 25;
+        //フォーカス範囲に指が動いたら、スタイルを適用
+        $(this).on('touchmove', function (e)
+        {
+            e.preventDefault();
+            //座標を取得
+            var movingX = event.changedTouches[0].pageX;
+            var movingY = event.changedTouches[0].pageY;
+            movingX = movingX - 620;
+            movingY = movingY - 170;
+            $('#a3-holdstamp > div').removeClass('hover');
+            //フォーカス判定
+            if ((one_left < movingX) && (movingX < one_right) && (one_top < movingY) && (movingY < one_bottom))
+            {
+                $('#a3-holdstamp > .menu1').addClass('hover');
+                $('#a3-holdstamp').attr('data-id', 1);
+            }
+            else if ((two_left < movingX) && (movingX < two_right) && (two_top < movingY) && (movingY < two_bottom))
+            {
+                $('#a3-holdstamp > .menu2').addClass('hover');
+                $('#a3-holdstamp').attr('data-id', 2);
+            }
+            else if ((three_left < movingX) && (movingX < three_right) && (three_top < movingY) && (movingY < three_bottom))
+            {
+                $('#a3-holdstamp > .menu3').addClass('hover');
+                $('#a3-holdstamp').attr('data-id', 3);
+            }
+            else if ((four_left < movingX) && (movingX < four_right) && (four_top < movingY) && (movingY < four_bottom))
+            {
+                $('#a3-holdstamp > .menu4').addClass('hover');
+                $('#a3-holdstamp').attr('data-id', 4);
+            }
+            else
+            {
+                $('#a3-holdstamp > div').removeClass('hover');
+                $('#a3-holdstamp').attr('data-id', 0);
+            }
+        });
+        $(this).bind('touchend', function ()
+        {
+            $(this).off('touchmove touchend');
+            var data_num = $('#a3-holdstamp').attr('data-id');
+            if (data_num == 1)
+            {
+                // stamp1
+                var point_X = x - 20;
+                var point_Y = y - 20;
+                var stamp1_html = \'&lt;div class=\&quot;stamp stamp1 magictime puffIn\&quot; style=\&quot;left:\' + point_X + \'px;top:\' + point_Y + \'px;\&quot;&gt;&lt;i class=\&quot;icon icon-heart\&quot;&gt;&lt;/i&gt;&lt;/div&gt;\';
+                $(\'.a3-photo\').append(stamp1_html);
+            }
+            else if (data_num == 2)
+            {
+                var point_X = x - 20;
+                var point_Y = y - 20;
+                var stamp2_html = \'&lt;div class=\&quot;stamp stamp2 magictime puffIn\&quot; style=\&quot;left:\' + point_X + \'px;top:\' + point_Y + \'px;\&quot;&gt;&lt;i class=\&quot;icon icon-star3\&quot;&gt;&lt;/i&gt;&lt;/div&gt;\';
+                $(\'.a3-photo\').append(stamp2_html);
+            }
+            else if (data_num == 3)
+            {
+                var point_X = x - 20;
+                var point_Y = y - 20;
+                var stamp3_html = \'&lt;div class=\&quot;stamp stamp3 magictime puffIn\&quot; style=\&quot;left:\' + point_X + \'px;top:\' + point_Y + \'px;\&quot;&gt;&lt;i class=\&quot;icon icon-thumbs-up\&quot;&gt;&lt;/i&gt;&lt;/div&gt;\';
+                $(\'.a3-photo\').append(stamp3_html);
+            }
+            else if (data_num == 4)
+            {
+                var point_X = x - 20;
+                var point_Y = y - 20;
+                var stamp4_html = \'&lt;div class=\&quot;stamp stamp4 magictime puffIn\&quot; style=\&quot;left:\' + point_X + \'px;top:\' + point_Y + \'px;\&quot;&gt;&lt;i class=\&quot;icon icon-happy2\&quot;&gt;&lt;/i&gt;&lt;/div&gt;\';
+                $(\'.a3-photo\').append(stamp4_html);
+            }
+            $('#a3-holdstamp').hide();
+            $('#a3-holdstamp > div').removeClass('hover');
+        });
+    });
+    // スタンプの移動
+    $('body').on('touchstart', '.stamp', function ()
+    {
+        var x = event.changedTouches[0].pageX;
+        var y = event.changedTouches[0].pageY;
+        x = x - 620;
+        y = y - 170;
+        $(this).on('touchmove', function (e)
+        {
+            e.preventDefault();
+            var movingX = event.changedTouches[0].pageX;
+            var movingY = event.changedTouches[0].pageY;
+            movingX = movingX - 620;
+            movingY = movingY - 170;
+            $(this).css({
+                'left' : movingX - 20 + 'px', 'top' : movingY - 20 + 'px'
+            });
+        });
+        $(this).bind('touchend', function ()
+        {
+            $(this).off('touchmove touchend');
+        });
+    });
+    // スタンプのリセット
+    $('body').on('click', '.a3-header .reset_button', function ()
+    {
+        $('.stamp').remove();
+    });
+    // カメラの起動
+    $('body').on('click', '.a3-header .take_camera', function ()
+    {
+        navigator.camera.getPicture(onSuccess, onFail, {
+            quality : 50, destinationType : Camera.DestinationType.DATA_URL
+        });
+        function onSuccess(imageData)
+        {
+            var src = "data:image/jpeg;base64," + imageData;
+            $('.a3-photo').css(
+            {
+                'background-image' : 'url(' + src + ')', 'background-repeat' : 'no-repeat', 'background-position' : 'center center',
+                'background-size' : 'cover'
+            });
+        }
+        function onFail(message)
+        {
+            alert('Failed because: ' + message);
+        }
+    });
+});
+</pre>
+			</div>
+
+		</div>
+
+
+	</div>
+<div>

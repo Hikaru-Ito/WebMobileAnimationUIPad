@@ -118,3 +118,45 @@ $(function() {
 
     });
 });
+
+// テキスト解説部分
+$(function() {
+    prettyPrint();
+　   $('body').on('click', '.a1-texts .tab', function() {
+
+        var type = $(this).attr('data-src');
+
+        if(type == 'left') {
+            $('.a1-texts .content .a').removeClass('disnon');
+            $('.a1-texts .content .b').addClass('disnon');
+
+        } else if (type == 'right') {
+            $('.a1-texts .content .b').removeClass('disnon');
+            $('.a1-texts .content .a').addClass('disnon');
+
+        }
+        $('.a1-texts .tab').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+　   $('body').on('click', '.a1-texts .types_tab', function() {
+
+        var type = $(this).attr('data-src');
+
+        if(type == 'html') {
+            $('.a1-texts .code').addClass('disnon');
+            $('.a1-texts .code.html').removeClass('disnon');
+
+        } else if (type == 'css') {
+            $('.a1-texts .code').addClass('disnon');
+            $('.a1-texts .code.css').removeClass('disnon');
+
+        } else if(type == 'js') {
+            $('.a1-texts .code').addClass('disnon');
+            $('.a1-texts .code.js').removeClass('disnon');
+        }
+        $('.a1-texts .types_tab').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+});

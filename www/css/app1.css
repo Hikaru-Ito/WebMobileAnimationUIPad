@@ -130,7 +130,7 @@
   height: 44px;
   text-align: center;
   color: #fff;
-  background: #2C3E50;
+  background: #F9690E;
   width: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
@@ -247,14 +247,20 @@
         padding: 0 10px;
         color: #444; }
 
-.a1-texts {
+.a1-texts,
+.a2-texts,
+.a3-texts {
   position: relative;
   width: 100%;
   height: 100%; }
-  .a1-texts .tabs {
+  .a1-texts .tabs,
+  .a2-texts .tabs,
+  .a3-texts .tabs {
     position: relative;
     height: 50px; }
-    .a1-texts .tabs .tab {
+    .a1-texts .tabs .tab,
+    .a2-texts .tabs .tab,
+    .a3-texts .tabs .tab {
       position: absolute;
       top: 0;
       width: 50%;
@@ -266,39 +272,120 @@
       color: #444;
       font-weight: bold;
       border-bottom: 3px solid #DADFE1; }
-      .a1-texts .tabs .tab.right {
+      .a1-texts .tabs .tab.right,
+      .a2-texts .tabs .tab.right,
+      .a3-texts .tabs .tab.right {
         right: 0; }
-      .a1-texts .tabs .tab.left {
+      .a1-texts .tabs .tab.left,
+      .a2-texts .tabs .tab.left,
+      .a3-texts .tabs .tab.left {
         left: 0; }
-      .a1-texts .tabs .tab.selected {
+      .a1-texts .tabs .tab.selected,
+      .a2-texts .tabs .tab.selected,
+      .a3-texts .tabs .tab.selected {
         border-bottom: 4px solid #F39C12; }
-  .a1-texts .content {
+  .a1-texts .content,
+  .a2-texts .content,
+  .a3-texts .content {
+    position: relative;
     width: 100%;
-    height: 100%; }
-    .a1-texts .content .a {
+    height: 100%;
+    overflow: hidden; }
+    .a1-texts .content .a.magictime, .a1-texts .content .b.magictime,
+    .a2-texts .content .a.magictime,
+    .a2-texts .content .b.magictime,
+    .a3-texts .content .a.magictime,
+    .a3-texts .content .b.magictime {
+      -webkit-animation-duration: 0.5s;
+      animation-duration: 0.5s; }
+    .a1-texts .content .a,
+    .a2-texts .content .a,
+    .a3-texts .content .a {
       height: 670px;
+      width: 100%;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
       -webkit-transform: translate3d(0, 0, 0); }
-      .a1-texts .content .a h1 {
+      .a1-texts .content .a h1,
+      .a2-texts .content .a h1,
+      .a3-texts .content .a h1 {
         color: #444;
         font-size: 32px;
         width: 94%;
         margin: 8px auto;
         line-height: 55px;
         padding-left: 10px; }
-      .a1-texts .content .a h2 {
+      .a1-texts .content .a h2,
+      .a2-texts .content .a h2,
+      .a3-texts .content .a h2 {
         font-size: 16px;
         color: #666;
         padding: 8px;
         border: 1px dashed #ABB7B7;
         width: 94%;
         margin: 8px auto; }
-      .a1-texts .content .a h3 {
+      .a1-texts .content .a h3,
+      .a2-texts .content .a h3,
+      .a3-texts .content .a h3 {
         width: 94%;
         margin: 8px auto;
-        border-bottom: 1px solid #D35400;
+        border-bottom: 1px solid #E67E22;
         color: #444;
         line-height: 32px;
         height: 32px;
         font-size: 15px; }
+      .a1-texts .content .a p,
+      .a2-texts .content .a p,
+      .a3-texts .content .a p {
+        font-size: 14px;
+        width: 94%;
+        margin: 8px auto;
+        line-height: 24px;
+        color: #333; }
+    .a1-texts .content .b .code,
+    .a2-texts .content .b .code,
+    .a3-texts .content .b .code {
+      height: 623px;
+      width: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      -webkit-transform: translate3d(0, 0, 0);
+      background: #2d2d2d;
+      padding: 0; }
+    .a1-texts .content .b .file_type_tabs,
+    .a2-texts .content .b .file_type_tabs,
+    .a3-texts .content .b .file_type_tabs {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      background: #2C3E50;
+      border-bottom: 2px solid #222; }
+      .a1-texts .content .b .file_type_tabs .types_tab,
+      .a2-texts .content .b .file_type_tabs .types_tab,
+      .a3-texts .content .b .file_type_tabs .types_tab {
+        position: absolute;
+        top: 8px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 12px;
+        width: 120px;
+        border: 1px solid #34495E; }
+        .a1-texts .content .b .file_type_tabs .types_tab.selected,
+        .a2-texts .content .b .file_type_tabs .types_tab.selected,
+        .a3-texts .content .b .file_type_tabs .types_tab.selected {
+          background: #22313F; }
+        .a1-texts .content .b .file_type_tabs .types_tab.html,
+        .a2-texts .content .b .file_type_tabs .types_tab.html,
+        .a3-texts .content .b .file_type_tabs .types_tab.html {
+          left: 80px; }
+        .a1-texts .content .b .file_type_tabs .types_tab.css,
+        .a2-texts .content .b .file_type_tabs .types_tab.css,
+        .a3-texts .content .b .file_type_tabs .types_tab.css {
+          left: 200px; }
+        .a1-texts .content .b .file_type_tabs .types_tab.js,
+        .a2-texts .content .b .file_type_tabs .types_tab.js,
+        .a3-texts .content .b .file_type_tabs .types_tab.js {
+          right: 80px; }

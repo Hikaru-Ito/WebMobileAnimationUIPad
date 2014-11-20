@@ -1,3 +1,115 @@
+@mixin transition($property, $duration, $timing) {
+	-webkit-transition-property : $property;
+    -webkit-transition-duration : $duration;
+    -webkit-transition-timing-function: $timing;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility:hidden;
+    transition-property : $property;
+    transition-duration : $duration;
+    transition-timing-function : $timing;
+    transform : translate3d(0, 0, 0);
+    backface-visibility:hidden;
+    //overflow:hidden;
+    -webkit-perspective: 1000;
+}
+body {
+	position:relative;
+    perspective:1500px;
+    -webkit-perspective:1500px;
+    background:#2c3e50;
+    //background: url(../img/back_bg.png);
+}
+#main_menu {
+	position: absolute;
+	top:0;
+	left:0;
+	width:450px;
+	height: 100%;
+	z-index: -1;
+	.menu {
+		position: absolute;
+		top:200px;
+		left:-460px;
+		color:#fff;
+		font-size: 28px;
+		width:400px;
+		height: 120px;
+		margin-bottom:16px;
+		@include transition(all, 0.3s, ease-out);
+		-webkit-transform: translate3d(0, 0, 0);
+		p {
+			position: absolute;
+			bottom:8px;
+			left:0;
+			width: 100%;
+			height: 30px;
+			font-size: 12px;
+			color:#C5EFF7;
+		}
+		&.menu1 {
+			-webkit-transition-delay:0.3s;
+		}
+		&.menu2 {
+			top:360px;
+			-webkit-transition-delay:0.5s;
+		}
+		&.menu3 {
+			top:520px;
+			-webkit-transition-delay:0.7s;
+		}
+	}
+	&.show {
+		.menu {
+			-webkit-transform: translate3d(500px, 0, 0);
+		}
+	}
+}
+.app {
+	position: absolute;
+	top:0;
+	height: 0;
+	width: 100%;
+	height: 100%;
+	@include transition(all, 0.5s, ease-out);
+	-webkit-transform: translate3d(0, 0, 0);
+	&.out {
+		-webkit-transform: translate3d(450px, 0, -700px);
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+	}
+	.menu_button {
+		position: absolute;
+		bottom:16px;
+		right:16px;
+		width:60px;
+		height: 60px;
+		border-radius: 4px;
+		background: #F39C12;
+		border-bottom:3px solid #D35400;
+		z-index: 90;
+		&.tapStyle:after {
+			position:absolute;
+			content:'';
+			display: block;
+			width: 100%;
+			height: 100%;
+			top:0;
+			left:0;
+			z-index: 91;
+			background:rgba(0, 0,0,0.2);
+		}
+		i {
+			content:'';
+			display: block;
+			width:60px;
+			height: 60px;
+			line-height: 60px;
+			text-align: center;
+			color: #fff;
+			font-size: 30px;
+		}
+	}
+}
 #main-header {
 	position: relative;
 	height: 46px;
@@ -20,7 +132,7 @@
 	height:100%;
 	float:left;
 	box-shadow: 2px 0 4px #444;
-	z-index: 10;
+	z-index: 14;
 	background: #fff;
 	overflow: hidden;
 }
@@ -31,7 +143,7 @@
 	width:520px;
 	top:46px;
 	right:0;
-	z-index: 8;
+	z-index: 12;
 	#iphone-area {
 		position: absolute;
 		top:10px;
