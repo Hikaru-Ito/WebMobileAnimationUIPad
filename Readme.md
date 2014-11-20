@@ -4,4 +4,4 @@
 
 cordova projects
 
-(s1.png)
+![スクショ](s1.png)
