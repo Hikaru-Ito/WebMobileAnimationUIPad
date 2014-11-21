@@ -17,11 +17,10 @@ $(function() {
    });
 
 	// メニューの開閉
-   $('body').on('click', '.menu_button',function(e) {
-   		$('.app').addClass('out');
+   function openMenu() {
+         $('.app').addClass('out');
          $('#main_menu').addClass('show');
-
-   });
+   }
 
    function closeMenu() {
       $('.app').removeClass('out');
@@ -33,6 +32,16 @@ $(function() {
          $('.menu').removeClass('stop_delay');
       }, 600);
    }
+
+   $('body').on('click', '.menu_button',function(e) {
+      openMenu();
+   });
+
+   // スワイプで開くようにする
+   $('body').hammer().on('swiperight', '#col-left', function() {
+      openMenu();
+   });
+
    $('body').on('click', '.app.out', function() {
       closeMenu();
    });
