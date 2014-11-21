@@ -48,6 +48,8 @@ body {
     #main_menu .menu.menu3 {
       top: 520px;
       -webkit-transition-delay: 0.7s; }
+    #main_menu .menu.stop_delay {
+      -webkit-transition-delay: 0s; }
   #main_menu.show .menu {
     -webkit-transform: translate3d(500px, 0, 0); }
 

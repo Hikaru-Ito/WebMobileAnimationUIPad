@@ -57,6 +57,9 @@ body {
 			top:520px;
 			-webkit-transition-delay:0.7s;
 		}
+		&.stop_delay {
+			-webkit-transition-delay:0s;
+		}
 	}
 	&.show {
 		.menu {

@@ -22,10 +22,19 @@ $(function() {
          $('#main_menu').addClass('show');
 
    });
-   $('body').on('click', '.app.out', function() {
-   		$('.app').removeClass('out');
-         $('#main_menu').removeClass('show');
 
+   function closeMenu() {
+      $('.app').removeClass('out');
+      $('#main_menu').removeClass('show');
+
+      // 開閉の際に、menuのtransitiond-delayを抑止する
+      $('.menu').addClass('stop_delay');
+      setTimeout(function() {
+         $('.menu').removeClass('stop_delay');
+      }, 600);
+   }
+   $('body').on('click', '.app.out', function() {
+      closeMenu();
    });
 
    // メニュー選択
@@ -46,7 +55,6 @@ $(function() {
    			$('#col-right .content2').removeClass('disnon');
             $('.menu_button').css({'background':'#1E8BC3','border-bottom':'3px solid #1F3A93'});
 
-
    		} else if(type == 3) {
    			$('#col-left > .content').addClass('disnon');
    			$('#col-left > .content3').removeClass('disnon');
@@ -54,8 +62,8 @@ $(function() {
    			$('#col-right .content3').removeClass('disnon');
             $('.menu_button').css({'background':'#DB0A5B','border-bottom':'3px solid #96281B'});
 
-
    		}
 		$('.app').removeClass('out');
+      closeMenu();
    });
 });
