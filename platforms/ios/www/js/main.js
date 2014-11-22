@@ -42,6 +42,12 @@ $(function() {
       openMenu();
    });
 
+   // スワイプでメニューを閉じるようにする
+   $('body').hammer().on('swipeleft', '.app.out', function() {
+      closeMenu();
+   });
+
+
    $('body').on('click', '.app.out', function() {
       closeMenu();
    });
